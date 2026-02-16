@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "hugo server -w -D -v",
-    "build": "hugo -v",
+    "server": "hugo server -w -D -p 1314",
+    "build": "hugo",
     "deploy": "aws s3 sync public s3://jpena-portfolio-hugo --acl public-read --profile jpena"
   },
   "repository": {
