@@ -1,0 +1,92 @@
+---
+import "../../styles/global.css";
+const posts = [
+  {
+    title: "What is Site Reliability Engineering?",
+    url: "/posts/site-reliability-engineering/",
+    summary: "A concise overview of SRE, responsibilities, and useful resources."
+  },
+  {
+    title: "Deploy Prisma to AWS Fargate with Terraform",
+    url: "/posts/terraform-prisma-fargate/",
+    summary: "Step-by-step infrastructure walkthrough for Prisma on AWS Fargate."
+  }
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Posts · jpena.dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="nav-bar">
+        <nav class="nav">
+          <a class="nav-home" href="/">Home</a>
+          <a href="/posts/">Posts</a>
+          <a href="/files/jpena_cv.pdf">Resume</a>
+          <a href="/about/">About</a>
+        </nav>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle theme">
+          <svg data-icon="sun" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 4.5a1 1 0 0 1 1 1V7a1 1 0 1 1-2 0V5.5a1 1 0 0 1 1-1zm0 10a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7.5-3.5a1 1 0 0 1-1 1H17a1 1 0 1 1 0-2h1.5a1 1 0 0 1 1 1zM8 12a1 1 0 0 1-1 1H5.5a1 1 0 1 1 0-2H7a1 1 0 0 1 1 1zm8.95-5.45a1 1 0 0 1 0 1.41l-1.06 1.06a1 1 0 1 1-1.41-1.41l1.06-1.06a1 1 0 0 1 1.41 0zM9.52 15.98a1 1 0 0 1 0 1.41l-1.06 1.06a1 1 0 1 1-1.41-1.41l1.06-1.06a1 1 0 0 1 1.41 0zM19.01 15.98a1 1 0 0 1 0 1.41l-1.06 1.06a1 1 0 1 1-1.41-1.41l1.06-1.06a1 1 0 0 1 1.41 0zM9.52 6.57a1 1 0 0 1 0 1.41L8.46 9.04A1 1 0 1 1 7.05 7.63l1.06-1.06a1 1 0 0 1 1.41 0z"/>
+          </svg>
+          <svg data-icon="moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 14.5A8.5 8.5 0 0 1 9.5 3a1 1 0 0 0-.92 1.39A7.5 7.5 0 0 0 20.6 15.92 1 1 0 0 0 21 14.5z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main class="wrap">
+      <header class="page-header">
+        <h1 class="page-title">Posts</h1>
+        <p class="body-text">Writing about reliability, infrastructure, and practical engineering.</p>
+      </header>
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li>
+            <a class="post-card" href={post.url}>
+              <div class="post-card-title">{post.title}</div>
+              <div class="post-card-summary">{post.summary}</div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </main>
+    <script is:inline>
+      const root = document.documentElement;
+      const toggle = document.querySelector("[data-theme-toggle]");
+      const sun = toggle?.querySelector('[data-icon="sun"]');
+      const moon = toggle?.querySelector('[data-icon="moon"]');
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const saved = localStorage.getItem("theme");
+      const initial = saved || (prefersDark ? "dark" : "light");
+      root.dataset.theme = initial;
+      if (toggle) {
+        if (sun && moon) {
+          sun.style.display = initial === "dark" ? "none" : "block";
+          moon.style.display = initial === "dark" ? "block" : "none";
+        }
+        toggle.setAttribute("aria-pressed", initial === "dark");
+        toggle.addEventListener("click", () => {
+          const next = root.dataset.theme === "dark" ? "light" : "dark";
+          root.dataset.theme = next;
+          localStorage.setItem("theme", next);
+          if (sun && moon) {
+            sun.style.display = next === "dark" ? "none" : "block";
+            moon.style.display = next === "dark" ? "block" : "none";
+          }
+          toggle.setAttribute("aria-pressed", next === "dark");
+        });
+      }
+    </script>
+  </body>
+</html>

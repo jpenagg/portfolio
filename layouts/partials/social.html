@@ -1,0 +1,7 @@
+<div class="social-links">
+  {{ range .Site.Params.social }}
+    <a class="social-link" href="{{ .url }}" aria-label="{{ .name }}">
+      {{ .name }}
+    </a>
+  {{ end }}
+</div>
