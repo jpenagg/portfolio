@@ -4,12 +4,14 @@ const posts = [
   {
     title: "What is Site Reliability Engineering?",
     url: "/posts/site-reliability-engineering/",
-    summary: "A concise overview of SRE, responsibilities, and useful resources."
+    summary: "A concise overview of SRE, responsibilities, and useful resources.",
+    date: "Feb 1, 2020"
   },
   {
     title: "Deploy Prisma to AWS Fargate with Terraform",
     url: "/posts/terraform-prisma-fargate/",
-    summary: "Step-by-step infrastructure walkthrough for Prisma on AWS Fargate."
+    summary: "Step-by-step infrastructure walkthrough for Prisma on AWS Fargate.",
+    date: "Oct 22, 2019"
   }
 ];
 ---
@@ -50,12 +52,13 @@ const posts = [
         <h1 class="page-title">Posts</h1>
         <p class="body-text">Writing about reliability, infrastructure, and practical engineering.</p>
       </header>
-      <ul class="post-list">
+      <ul class="post-list medium-list">
         {posts.map((post) => (
           <li>
-            <a class="post-card" href={post.url}>
-              <div class="post-card-title">{post.title}</div>
-              <div class="post-card-summary">{post.summary}</div>
+            <a class="post-row" href={post.url}>
+              <div class="post-row-title">{post.title}</div>
+              <div class="post-row-summary">{post.summary}</div>
+              <div class="post-row-meta">{post.date}</div>
             </a>
           </li>
         ))}
