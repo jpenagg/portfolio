@@ -71,9 +71,8 @@ import "../styles/global.css";
       const toggle = document.querySelector("[data-theme-toggle]");
       const sun = toggle?.querySelector('[data-icon="sun"]');
       const moon = toggle?.querySelector('[data-icon="moon"]');
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       const saved = localStorage.getItem("theme");
-      const initial = saved || (prefersDark ? "dark" : "light");
+      const initial = saved || "dark";
       root.dataset.theme = initial;
       if (toggle) {
         if (sun && moon) {
