@@ -13,12 +13,12 @@ First and foremost, SREs are engineers. We apply the principles of computer scie
 
 ## Core Principles
 
-SRE is about creating reliability through engineering, not heroics. That usually means:
+SRE is about creating reliability through engineering. That usually means:
 
-- **Service Level Objectives (SLOs)** to define what “good” looks like.
-- **Error budgets** to balance reliability with the pace of change.
-- **Automation** to reduce toil and make systems predictable.
-- **Blameless culture** that focuses on learning and prevention.
+- **Service Level Objectives (SLOs)** to define what “good” looks like
+- **Error budgets** to balance reliability with the pace of change
+- **Automation** to reduce toil and make systems predictable
+- **Blameless culture** that focuses on learning and prevention
 
 ## Common Responsibilities
 
@@ -29,23 +29,6 @@ Day‑to‑day work varies by company, but the shape is consistent:
 - Incident response and post‑incident reviews
 - Capacity planning and performance optimization
 - Improving developer experience and deployment safety
-
-## How SRE Differs From Traditional Ops
-
-Traditional ops can focus on keeping the lights on. SRE brings engineering rigor:
-
-- Build systems to *prevent* incidents, not just react to them
-- Measure reliability with SLOs instead of guessing
-- Automate repetitive tasks so teams can ship faster
-
-## Getting Started
-
-If you want to get into SRE, focus on:
-
-- Linux fundamentals and networking basics
-- One cloud platform (AWS, GCP, or Azure)
-- Infrastructure as code (e.g., Terraform)
-- Observability tools (Prometheus, Grafana, OpenTelemetry)
 
 ## SRE Resources
 
