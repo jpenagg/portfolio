@@ -1,0 +1,10 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/">{{ .Site.Title }}</a>
+    <nav class="nav">
+      {{ range .Site.Menus.main }}
+        <a class="nav-link" href="{{ .URL }}">{{ .Name }}</a>
+      {{ end }}
+    </nav>
+  </div>
+</header>

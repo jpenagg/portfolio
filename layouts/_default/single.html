@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">{{ .Section | title }}</p>
+      <h1>{{ .Title }}</h1>
+      {{ if in (slice "posts" "post") .Section }}
+        <p class="meta">{{ .Date.Format "Jan 2, 2006" }}</p>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content">
+      {{ .Content }}
+    </div>
+  </section>
+{{ end }}

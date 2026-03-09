@@ -1,0 +1,19 @@
+<article class="card">
+  <a class="card-cover" href="{{ .RelPermalink }}">
+    {{ $image := "" }}
+    {{ with .Params.images }}
+      {{ if gt (len .) 0 }}
+        {{ $image = index . 0 }}
+      {{ end }}
+    {{ end }}
+    <div class="card-cover-inner" {{ if $image }}style="background-image: url('{{ $image }}')"{{ end }}></div>
+  </a>
+  <div class="card-body">
+    <div class="card-meta">{{ .Date.Format "Jan 2, 2006" }}</div>
+    <h3 class="card-title">
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h3>
+    <p class="card-excerpt">{{ .Summary }}</p>
+    <a class="card-link" href="{{ .RelPermalink }}">Read</a>
+  </div>
+</article>
