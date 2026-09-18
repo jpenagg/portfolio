@@ -1,0 +1,49 @@
+<section class="interactive-terminal" aria-label="Interactive navigation terminal" hidden>
+  <div class="terminal-intro"><span class="accent" aria-hidden="true">⌘</span> More comfortable in a shell? <span class="muted">Try <code>help</code>.</span></div>
+  <div class="terminal-output" role="log" aria-live="polite" aria-relevant="additions"></div>
+  <form class="terminal-form">
+    <label for="terminal-command"><span class="terminal-user">visitor</span><span class="muted">@jpena.dev</span> <span class="accent" aria-hidden="true">❯</span><span class="sr-only"> Terminal command</span></label>
+    <input id="terminal-command" name="command" type="text" placeholder="help" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" />
+    <button type="submit" aria-label="Run command">↵</button>
+  </form>
+</section>
+
+<script>
+  const terminal = document.querySelector<HTMLElement>(".interactive-terminal");
+  const form = document.querySelector<HTMLFormElement>(".terminal-form");
+  const input = document.querySelector<HTMLInputElement>("#terminal-command");
+  const output = document.querySelector<HTMLElement>(".terminal-output");
+  const routes: Record<string, string> = { about: "/about/", posts: "/posts/", resume: "/files/jpena_cv.pdf", home: "/" };
+  if (terminal && form && input && output) {
+    terminal.hidden = false;
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const raw = input.value.trim();
+      const command = raw.toLowerCase();
+      input.value = "";
+      if (!command) return;
+      if (command === "clear") { output.replaceChildren(); return; }
+      if (Object.hasOwn(routes, command)) { window.location.assign(routes[command]); return; }
+      let response: string;
+      switch (command) {
+        case "help": response = "about / posts / resume / home — explore the site\nwhoami — meet John\ntheme — switch light/dark\nclear — clear this terminal"; break;
+        case "whoami": response = "John Peña · Site Reliability Engineer @ Udemy\nBuilding reliable systems. Automating the repetitive stuff."; break;
+        case "pwd": response = "https://jpena.dev/"; break;
+        case "ls": response = "about/  posts/  resume.pdf"; break;
+        case "theme": document.querySelector<HTMLButtonElement>(".theme-toggle")?.click(); response = `Theme set to ${document.documentElement.dataset.theme}.`; break;
+        case "sudo": response = "Nice try. You're already welcome here — no root required."; break;
+        default: response = `Command not found: ${raw}. Type help for available commands.`;
+      }
+      const entry = document.createElement("div");
+      const prompt = document.createElement("div");
+      prompt.className = "terminal-echo";
+      prompt.textContent = `❯ ${raw}`;
+      const result = document.createElement("p");
+      result.textContent = response;
+      entry.append(prompt, result);
+      output.append(entry);
+      while (output.children.length > 8) output.firstElementChild?.remove();
+      output.scrollTop = output.scrollHeight;
+    });
+  }
+</script>

@@ -1,6 +1,9 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: Deploy Prisma to AWS Fargate with Terraform
+description: Step-by-step infrastructure walkthrough for Prisma on AWS Fargate.
+date: "2019-10-22"
+category: Infrastructure
 ---
 
 ![aws_prisma_terraform](/static/prisma-main.png)

@@ -1,0 +1,83 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "John Peña — Site Reliability Engineer. Notes on reliable systems, cloud infrastructure, and making engineers’ lives easier.",
+} = Astro.props;
+const pathname = Astro.url.pathname;
+const navigation = [
+  { href: "/", label: "~/", name: "Home" },
+  { href: "/about/", label: "about", name: "About" },
+  { href: "/posts/", label: "posts", name: "Posts" },
+];
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="dark light" />
+    <title>{title ? `${title} · jpena.dev` : "jpena.dev"}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script is:inline>
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem("theme") === "light" ? "light" : "dark";
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="wordmark" href="/" aria-label="jpena.dev home"><span aria-hidden="true">&gt;_</span> jpena<span class="muted">.dev</span></a>
+        <div class="header-controls">
+          <nav class="nav" aria-label="Main navigation">
+            {navigation.map(({ href, label, name }) => (
+              <a href={href} aria-label={name} aria-current={(href === "/" ? pathname === href : pathname.startsWith(href)) ? "page" : undefined}>{label}</a>
+            ))}
+            <a href="/files/jpena_cv.pdf">resume <span aria-hidden="true">↗</span></a>
+          </nav>
+          <button class="theme-toggle" type="button" aria-label="Toggle light theme" aria-pressed="false" title="Toggle light theme" hidden>
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" /></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 14a8 8 0 0 1-10-10 8 8 0 1 0 10 10Z" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <main id="main" tabindex="-1"><slot /></main>
+
+      <footer class="site-footer">
+        <span><span class="accent" aria-hidden="true">❯</span> Built with care. And a terminal.</span>
+        <div><a href="https://github.com/jpenagg/">GitHub ↗</a><a href="mailto:jsp3na@gmail.com">Email</a></div>
+        <span class="footer-signoff">© {new Date().getFullYear()} John Peña <span class="accent" aria-hidden="true">_</span></span>
+      </footer>
+    </div>
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
+      function syncThemeButton() {
+        toggle?.setAttribute("aria-pressed", String(document.documentElement.dataset.theme === "light"));
+      }
+      if (toggle) {
+        toggle.hidden = false;
+        syncThemeButton();
+        toggle.addEventListener("click", () => {
+          const theme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+          document.documentElement.dataset.theme = theme;
+          try { localStorage.setItem("theme", theme); } catch {}
+          syncThemeButton();
+        });
+      }
+    </script>
+  </body>
+</html>

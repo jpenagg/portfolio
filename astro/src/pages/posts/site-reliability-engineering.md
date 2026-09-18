@@ -1,9 +1,10 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: What is Site Reliability Engineering?
+description: A concise overview of SRE, responsibilities, and useful resources.
+date: "2020-02-01"
+category: Reliability
 ---
-
-## What is Site Reliability Engineering?
 
 Site Reliability Engineering is what happens when you ask a software engineer to do operations.
 

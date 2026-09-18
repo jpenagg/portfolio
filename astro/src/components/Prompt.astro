@@ -1,0 +1,5 @@
+---
+interface Props { command: string; }
+const { command } = Astro.props;
+---
+<div class="command-label"><span class="prompt-symbol" aria-hidden="true">❯</span><span>{command}</span></div>

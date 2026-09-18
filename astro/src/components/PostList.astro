@@ -1,0 +1,20 @@
+---
+const posts = (await Astro.glob("../pages/posts/*.md")).sort(
+  (a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date)
+);
+---
+<ul class="post-list">
+  {posts.map((post, index) => (
+    <li>
+      <a class="post-row" href={post.url}>
+        <span class="post-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+        <div class="post-row-content">
+          <div class="post-row-meta"><span>{post.frontmatter.category}</span><span aria-hidden="true">/</span><time datetime={post.frontmatter.date}>{new Date(`${post.frontmatter.date}T00:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</time></div>
+          <h3>{post.frontmatter.title}</h3>
+          <p>{post.frontmatter.description}</p>
+        </div>
+        <span class="post-arrow" aria-hidden="true">↗</span>
+      </a>
+    </li>
+  ))}
+</ul>
