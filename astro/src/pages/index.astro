@@ -6,42 +6,46 @@ import Terminal from "../components/Terminal.astro";
 ---
 
 <SiteLayout>
-  <section class="hero" aria-labelledby="intro-title">
-    <div class="hero-copy">
-      <Prompt command="whoami" />
-      <h1 id="intro-title">Hey, I'm John<span class="accent">.</span><span class="cursor" aria-hidden="true">_</span></h1>
-      <p class="hero-role">Site Reliability Engineer <span class="muted">@</span> <a href="https://www.udemy.com/">Udemy ↗</a></p>
-      <p class="hero-description">I build reliable systems, automate the repetitive stuff, and help engineers ship.</p>
-      <div class="hero-actions">
-        <a class="button button-primary" href="/about/">More about me <span aria-hidden="true">→</span></a>
-        <a class="button" href="/files/jpena_cv.pdf">View resume <span aria-hidden="true">↗</span></a>
-      </div>
-      <div class="social-links"><span class="muted">find me on</span><a href="https://github.com/jpenagg/">GitHub ↗</a><a href="https://linkedin.com/in/jpenagg/">LinkedIn ↗</a><a href="https://twitter.com/jpena23">Twitter ↗</a><a href="mailto:jsp3na@gmail.com">Email ↗</a></div>
+  <section class="home-intro" aria-labelledby="intro-title">
+    <Prompt command="whoami" />
+    <h1 id="intro-title">Hey, I'm John<span class="accent">.</span><span class="cursor" aria-hidden="true">_</span></h1>
+    <p class="intro-role">Site Reliability Engineer <span class="muted">@</span> <a href="https://www.udemy.com/">Udemy <span aria-hidden="true">↗</span></a></p>
+    <p class="intro-description">Building reliable systems. Automating the rest.</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="/about/">More about me <span aria-hidden="true">→</span></a>
+      <a class="button button-resume" href="/files/jpena_cv.pdf">View resume <span aria-hidden="true">↗</span></a>
     </div>
-
-    <aside class="profile-terminal" aria-label="Profile at a glance">
-      <div class="window-bar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>john — bash</span><span aria-hidden="true">~</span></div>
-      <div class="profile-content">
-        <Prompt command="cat profile.yaml" />
-        <p class="code-comment"># usually on linux, probably in neovim</p>
-        <dl class="profile-fields">
-          <div><dt>name</dt><dd>John Peña</dd></div>
-          <div><dt>role</dt><dd>Site Reliability Engineer</dd></div>
-          <div><dt>experience</dt><dd class="amber">10+ years</dd></div>
-          <div><dt>focus</dt><dd><span class="muted">[</span>reliability, scalability, automation<span class="muted">]</span></dd></div>
-        </dl>
-        <p class="code-comment stack-comment"># tools of the trade</p>
-        <div class="stack-tags"><span>Kubernetes</span><span>Terraform</span><span>AWS</span><span>Istio</span><span>Argo CD</span></div>
-        <div class="profile-bottom"><span class="accent" aria-hidden="true">❯</span><span class="block-cursor" aria-hidden="true"></span></div>
-      </div>
-      <div class="window-status"><span>~/workspace</span><span>UTF-8 <span class="accent">●</span></span></div>
-    </aside>
+    <div class="social-links">
+      <span class="muted">find me on</span>
+      <a href="https://github.com/jpenagg/">GitHub ↗</a>
+      <a href="https://linkedin.com/in/jpenagg/">LinkedIn ↗</a>
+      <a href="https://twitter.com/jpena23">Twitter ↗</a>
+      <a href="mailto:jsp3na@gmail.com">Email ↗</a>
+    </div>
   </section>
 
-  <section class="writing-section" aria-labelledby="writing-title">
-    <div class="section-heading"><div><Prompt command="ls ./posts" /><h2 id="writing-title">Notes from the terminal</h2></div><a class="text-link" href="/posts/">All posts <span aria-hidden="true">→</span></a></div>
-    <p class="section-description">Things I've learned building, breaking, and making systems better.</p>
-    <PostList />
+  <section class="home-writing" aria-labelledby="writing-title">
+    <div class="section-heading"><h2 id="writing-title">Recent writing</h2><a class="text-link" href="/posts/">All posts <span aria-hidden="true">→</span></a></div>
+    <PostList compact limit={3} />
   </section>
   <Terminal />
 </SiteLayout>
+
+<style>
+  .home-intro { padding-block: 48px 64px; }
+  .home-intro :global(.command-label) { margin-bottom: 16px; }
+  .home-intro h1 { margin-bottom: 20px; }
+  .intro-role { margin-bottom: 12px; }
+  .intro-role a { color: var(--accent); text-decoration-color: var(--border); white-space: nowrap; }
+  .intro-role a:hover { text-decoration-color: var(--accent); }
+  .intro-description { max-width: 540px; color: var(--muted); line-height: 1.9; margin-bottom: 24px; }
+  .hero-actions .button { min-height: 48px; padding: 14px 20px; font-size: 13px; }
+  .home-intro .hero-actions .button-resume { background: #101412; color: #e7ece7; }
+  .home-writing { border-top: 1px solid var(--border); padding-top: 28px; }
+  .home-writing .section-heading { align-items: baseline; margin-bottom: 12px; }
+  .home-writing h2 { font-size: 18px; }
+
+  @media (max-width: 540px) {
+    .home-intro { padding-block: 32px 48px; }
+  }
+</style>
