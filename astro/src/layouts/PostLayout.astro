@@ -14,6 +14,6 @@ const filename = Astro.url.pathname.split("/").filter(Boolean).pop();
       <div class="post-row-meta"><span>{category}</span><span aria-hidden="true">/</span><time datetime={date}>{new Date(`${date}T00:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}</time></div>
     </header>
     <div class="post-body prose"><slot /></div>
-    <div class="post-end"><span class="code-comment"># thanks for reading</span><a class="text-link" href="/posts/">More notes ←</a></div>
+    <div class="post-end"><span class="code-comment"># thanks for reading</span><a class="text-link" href="/posts/">More posts ←</a></div>
   </article>
 </SiteLayout>
