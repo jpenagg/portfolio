@@ -6,24 +6,20 @@ date: "2020-02-01"
 category: Reliability
 ---
 
-Site Reliability Engineering is what happens when you ask a software engineer to do operations.
+Site Reliability Engineering applies software engineering to running reliable services. The work includes defining reliability targets, making deployments safer, responding to incidents, and reducing repetitive operational work.
 
-In general, an SRE team is responsible for availability, latency, performance, efficiency, change management, monitoring, emergency response, security, and capacity planning.
-
-First and foremost, SREs are engineers. We apply the principles of computer science and engineering to the design and development of computing systems: generally, large distributed ones.
-
-## Core Principles
+## Core principles
 
 SRE is about creating reliability through engineering. That usually means:
 
-- **Service Level Objectives (SLOs)** to define what “good” looks like
-- **Error budgets** to balance reliability with the pace of change
-- **Automation** to reduce toil and make systems predictable
-- **Blameless culture** that focuses on learning and prevention
+- **Service level indicators (SLIs) and objectives (SLOs)** to measure user-facing reliability and set targets
+- **Error budgets** to use those targets to guide release and reliability decisions
+- **Reducing toil** to eliminate repetitive operational work through engineering
+- **Learning from incidents** to improve systems and processes without blaming individuals
 
-## Common Responsibilities
+## Common responsibilities
 
-Day‑to‑day work varies by company, but the shape is consistent:
+Responsibilities vary by team, but commonly include:
 
 - Designing and maintaining resilient systems
 - Observability (metrics, logs, tracing) and actionable alerting
@@ -31,12 +27,10 @@ Day‑to‑day work varies by company, but the shape is consistent:
 - Capacity planning and performance optimization
 - Improving developer experience and deployment safety
 
-## SRE Resources
+## Further reading
 
-- [The Centralized Site Reliability Practice at Netflix](https://netflixtechblog.com/keeping-customers-streaming-the-centralized-site-reliability-practice-at-netflix-205cc37aa9fb)
-- [SRE @ Dropbox](https://tammybutow.medium.com/graduating-from-bootcamp-and-interested-in-becoming-a-site-reliability-engineer-b69a38ce858b)
-- [Google SRE Books](https://sre.google/books/)
-- [System Design Primer](https://github.com/donnemartin/system-design-primer)
-- [Regex Cheat Sheet](https://www.geeksforgeeks.org/python-regex-cheat-sheet/)
-- [Kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-- [The Art of Unix Programming](https://nakamotoinstitute.org/static/docs/taoup.pdf)
+- [Introduction to SRE — Ben Treynor Sloss](https://sre.google/sre-book/introduction/) — origins and core practices.
+- [Implementing SLOs](https://sre.google/workbook/implementing-slos/) — reliability targets and error budgets.
+- [Designing Data-Intensive Applications — Martin Kleppmann](https://dataintensive.net/) — distributed systems and reliability trade-offs.
+- [Systems Performance — Brendan Gregg](https://www.brendangregg.com/systems-performance-2nd-edition-book.html) — diagnosing performance problems and bottlenecks.
+- [Amazon Builders’ Library](https://aws.amazon.com/builders-library/) — technical articles on retries, timeouts, overload, and operating distributed systems.
